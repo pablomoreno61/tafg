@@ -1,0 +1,13 @@
+.idea
+.buildpath
+.htaccess
+.project
+.settings
+*~
+.php_cs.cache
+nbproject
+.DS_Store
+/cache
+/cache/volt
+/cache/doctrine
+/vendor
