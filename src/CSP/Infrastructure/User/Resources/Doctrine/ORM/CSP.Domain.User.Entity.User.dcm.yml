@@ -1,0 +1,78 @@
+CSP\Domain\User\Entity\User:
+  type: entity
+  repositoryClass: CSP\Infrastructure\User\Repository\UserRepository
+  table: users
+  id:
+    id:
+      type: uuid
+      nullable: false
+      id: true
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidGenerator
+  fields:
+    username:
+      type: string
+      nullable: true
+      length: 100
+      unique: true
+    email:
+      type: string
+      nullable: false
+      length: 130
+      unique: true
+      options:
+        fixed: false
+    password:
+      type: password
+      nullable: false
+      length: 130
+      options:
+        fixed: false
+    rankScore:
+      type: integer
+      nullable: false
+      options:
+        unsigned: true
+        default: 0
+      column: rank_score
+    nickname:
+      type: string
+      nullable: true
+      length: 130
+      unique: true
+      options:
+        fixed: false
+    avatar:
+      type: string
+      nullable: true
+      length: 130
+      options:
+        fixed: false
+    consecutiveLogins:
+      type: integer
+      nullable: false
+      options:
+        unsigned: true
+        default: 0
+      column: consecutive_logins
+    isActive:
+      type: boolean
+      nullable: false
+      column: is_active
+      options:
+        default: true
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+    updatedAt:
+      type: datetime
+      nullable: false
+      column: updated_at
+    timezone:
+      type: string
+  lifecycleCallbacks:
+    prePersist: [updatedLifeCycleDates]
+    preUpdate: [updatedLifeCycleDates]

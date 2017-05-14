@@ -1,0 +1,15 @@
+environment:
+  code: ES
+  displayErrors: 1
+  displayStartupErrors: 1
+
+doctrine:
+  mysql:
+    connections:
+      default:
+        driver: pdo_mysql
+        host: localhost
+        user: phalcon
+        password: secret
+        dbname: phalcon
+        charset: utf8

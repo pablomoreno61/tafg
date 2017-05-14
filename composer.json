@@ -1,0 +1,18 @@
+{
+  "name": "tfg-consupermiso",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "bin-dir": "vendor/bin"
+  },
+  "require": {
+    "doctrine/orm": "2.*",
+    "symfony/yaml": "^3.2",
+    "ramsey/uuid-doctrine": "^1.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "CSP\\": "src/CSP/"
+    }
+  }
+}

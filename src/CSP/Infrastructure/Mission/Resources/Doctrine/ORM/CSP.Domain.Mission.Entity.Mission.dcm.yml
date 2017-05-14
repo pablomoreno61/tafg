@@ -1,0 +1,63 @@
+CSP\Domain\Mission\Entity\Mission:
+  type: entity
+  repositoryClass: CSP\Infrastructure\Mission\Repository\MissionRepository
+  table: missions
+  id:
+    id:
+      type: integer
+      nullable: false
+      options:
+        unsigned: true
+      id: true
+      generator:
+        strategy: IDENTITY
+  fields:
+    name:
+      type: string
+      nullable: true
+      length: 130
+      options:
+        fixed: false
+      unique: true
+    text:
+      type: string
+      nullable: true
+      length: 130
+      options:
+        fixed: false
+    isActive:
+      type: boolean
+      nullable: false
+      column: is_active
+      options:
+        default: true
+    score:
+      type: decimal
+      nullable: false
+      precision: 7
+      scale: 3
+      options:
+        default: 0
+    startAt:
+      type: datetime
+      nullable: true
+      column: start_at
+      options:
+        default: null
+    expireAt:
+      type: datetime
+      nullable: true
+      column: expire_at
+      options:
+        default: null
+    updatedAt:
+      type: datetime
+      nullable: false
+      column: updated_at
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+  lifecycleCallbacks:
+    prePersist: [updatedLifeCycleDates]
+    preUpdate: [updatedLifeCycleDates]

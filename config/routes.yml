@@ -1,0 +1,67 @@
+root:
+  url: /
+  namespace: CSP\Application\Shared\Controller
+  module: shared
+  controller: index
+  action: index
+  camelize: true
+signup:
+  url:
+    - /signup
+  namespace: CSP\Application\User\Controller
+  module: user
+  controller: signup
+  action: index
+  camelize: true
+signupAction:
+  url: /signup/:action
+  namespace: CSP\Application\User\Controller
+  module: user
+  controller: signup
+  action: 1
+  camelize: true
+signupActionParams:
+  url: /signup/:action/:params
+  namespace: CSP\Application\User\Controller
+  module: user
+  controller: signup
+  action: 1
+  params: 2
+  camelize: true
+login:
+  url:
+    - /login
+  namespace: CSP\Application\User\Controller
+  module: user
+  controller: login
+  action: index
+loginAction:
+  url: /login/:action
+  namespace: CSP\Application\User\Controller
+  module: user
+  controller: login
+  action: 1
+  camelize: true
+loginActionParams:
+  url: /login/:action/:params
+  namespace: CSP\Application\User\Controller
+  module: user
+  controller: login
+  action: 1
+  params: 2
+  camelize: true
+logout:
+  url: /logout
+  namespace: CSP\Application\User\Controller
+  module: user
+  controller: login
+  action: logout
+  camelize: true
+missionActionParams:
+  url: /mission/:action/:params
+  namespace: CSP\Application\Mission\Controller
+  module: mission
+  controller: mission
+  action: 1
+  params: 2
+  camelize: true

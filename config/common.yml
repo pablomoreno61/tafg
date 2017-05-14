@@ -1,0 +1,23 @@
+application:
+  langDir: /src/CSP/Application/Shared/Resources/translations
+  modulesDir: /src/CSP/Application
+  defaultLayoutName: twitterbootstrap
+
+doctrine:
+  mysql:
+    proxyNamespace: Proxy
+    proxyDir: /cache/doctrine/proxy
+    mappingDir:
+      - /src/CSP/Infrastructure/Finance/Resources/Doctrine/ORM
+      - /src/CSP/Infrastructure/Gamification/Resources/Doctrine/ORM
+      - /src/CSP/Infrastructure/User/Resources/Doctrine/ORM
+      - /src/CSP/Infrastructure/Mission/Resources/Doctrine/ORM
+
+session:
+  expireAt: 7200
+  regenerateAt: 3600
+
+volt:
+  cacheDir: /cache/volt/
+  viewDir: /src/CSP/Application/Shared/View/
+  layoutDir: layouts/
