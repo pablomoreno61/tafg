@@ -73,6 +73,19 @@ CSP\Domain\User\Entity\User:
       column: updated_at
     timezone:
       type: string
+  oneToMany:
+    earnedMedals:
+      targetEntity: CSP\Domain\Gamification\Entity\EarnedMedal
+      mappedBy: user
+    crewMembers:
+      targetEntity: CSP\Domain\Gamification\Entity\CrewMember
+      mappedBy: user
+    leaderBoardPlayers:
+      targetEntity: CSP\Domain\Gamification\Entity\LeaderBoardPlayer
+      mappedBy: user
+    earnedPrizes:
+      targetEntity: CSP\Domain\Gamification\Entity\EarnedPrize
+      mappedBy: user
   lifecycleCallbacks:
     prePersist: [updatedLifeCycleDates]
     preUpdate: [updatedLifeCycleDates]

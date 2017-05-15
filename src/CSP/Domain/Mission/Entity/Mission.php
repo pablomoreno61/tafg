@@ -62,7 +62,7 @@ class Mission extends History
     public function getStartAt()
     {
         if (!empty($this->startAt)) {
-            $this->startAt->settimezone(new \DateTimeZone($this->getTimeZone()));
+            $this->startAt->settimezone(new \DateTimeZone($this->timezone));
         }
 
         return $this->startAt;
@@ -78,7 +78,7 @@ class Mission extends History
     public function getExpireAt()
     {
         if (!empty($this->expireAt)) {
-            $this->expireAt->settimezone(new \DateTimeZone($this->getTimeZone()));
+            $this->expireAt->settimezone(new \DateTimeZone($this->timezone));
         }
 
         return $this->expireAt;

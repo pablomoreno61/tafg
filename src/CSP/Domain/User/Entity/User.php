@@ -3,6 +3,7 @@
 namespace CSP\Domain\User\Entity;
 
 use CSP\Infrastructure\Date\Entity\History;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class User extends History
 {
@@ -25,6 +26,22 @@ class User extends History
     private $avatar;
 
     private $isActive = false;
+
+    private $earnedMedals;
+
+    private $crewMembers;
+
+    private $leaderBoardPlayers;
+
+    private $earnedPrizes;
+
+    public function __construct()
+    {
+        $this->earnedMedals = new ArrayCollection();
+        $this->crewMembers = new ArrayCollection();
+        $this->leaderBoardPlayers = new ArrayCollection();
+        $this->earnedPrizes = new ArrayCollection();
+    }
 
     /**
      * @return mixed
@@ -196,5 +213,75 @@ class User extends History
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getEarnedMedals()
+    {
+        return $this->earnedMedals;
+    }
 
+    /**
+     * @param mixed $earnedMedals
+     * @return User
+     */
+    public function setEarnedMedals($earnedMedals)
+    {
+        $this->earnedMedals = $earnedMedals;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCrewMembers()
+    {
+        return $this->crewMembers;
+    }
+
+    /**
+     * @param mixed $crewMembers
+     * @return User
+     */
+    public function setCrewMembers($crewMembers)
+    {
+        $this->crewMembers = $crewMembers;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLeaderBoardPlayers()
+    {
+        return $this->leaderBoardPlayers;
+    }
+
+    /**
+     * @param mixed $leaderBoardPlayers
+     * @return User
+     */
+    public function setLeaderBoardPlayers($leaderBoardPlayers)
+    {
+        $this->leaderBoardPlayers = $leaderBoardPlayers;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEarnedPrizes()
+    {
+        return $this->earnedPrizes;
+    }
+
+    /**
+     * @param mixed $earnedPrizes
+     * @return User
+     */
+    public function setEarnedPrizes($earnedPrizes)
+    {
+        $this->earnedPrizes = $earnedPrizes;
+        return $this;
+    }
 }

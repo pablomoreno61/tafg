@@ -1,0 +1,52 @@
+CSP\Domain\Finance\Entity\Reward:
+  type: entity
+  repositoryClass: CSP\Infrastructure\Finance\Repository\RewardRepository
+  table: rewards
+  id:
+    id:
+      type: integer
+      nullable: false
+      options:
+        unsigned: true
+      id: true
+      generator:
+        strategy: IDENTITY
+  fields:
+    credits:
+      type: decimal
+      nullable: false
+      precision: 7
+      scale: 3
+      options:
+        default: 0
+    isActive:
+      type: boolean
+      nullable: false
+      column: is_active
+      options:
+        default: true
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+    updatedAt:
+      type: datetime
+      nullable: false
+      column: updated_at
+    timezone:
+      type: string
+  manyToOne:
+    user:
+      targetEntity: CSP\Domain\User\Entity\User
+      cascade: {  }
+      fetch: LAZY
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        user_id:
+          referencedColumnName: id
+          nullable: false
+      orphanRemoval: false
+  lifecycleCallbacks:
+    prePersist: [updatedLifeCycleDates]
+    preUpdate: [updatedLifeCycleDates]

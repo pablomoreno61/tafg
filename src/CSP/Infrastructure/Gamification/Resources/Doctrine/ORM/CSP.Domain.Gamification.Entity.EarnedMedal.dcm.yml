@@ -1,0 +1,34 @@
+CSP\Domain\Gamification\Entity\EarnedMedal:
+  type: entity
+  repositoryClass: CSP\Infrastructure\User\Repository\EarnedMedalRepository
+  table: earned_medals
+  id:
+    user:
+      associationKey: true
+    medal:
+      associationKey: true
+  fields:
+    updatedAt:
+      type: datetime
+      nullable: false
+      column: updated_at
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+  manyToOne:
+    user:
+      targetEntity: CSP\Domain\User\Entity\User
+      inversedBy: earnedMedals
+      joinColumn:
+          name: user_id
+          referencedColumnName: id
+    medal:
+      targetEntity: CSP\Domain\Gamification\Entity\Medal
+      inversedBy: earnedMedals
+      joinColumn:
+        name: medal_id
+        referencedColumnName: id
+  lifecycleCallbacks:
+    prePersist: [updatedLifeCycleDates]
+    preUpdate: [updatedLifeCycleDates]

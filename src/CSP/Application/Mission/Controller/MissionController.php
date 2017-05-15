@@ -9,5 +9,7 @@ class MissionController extends SharedController
     public function indexAction()
     {
         $mission = $this->missionService->findMission(1);
+
+        $this->view->mission = $mission;
     }
 }

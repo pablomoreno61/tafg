@@ -46,14 +46,17 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-2">
-                <ul class="list-group">
-                    <li class="list-group-item"><a href="{{ url('mission/mission/index') }}">Poker</a></li>
-                    <li class="list-group-item"><a href="{{ url('gamification/rank/list-earned-medals') }}">Medaller</a></li>
-                    <li class="list-group-item"><a href="{{ url('gamification/leader-board/list-players') }}">Classificació</a></li>
-                    <li class="list-group-item"><a href="{{ url('gamification/crew/find-crew') }}">Tripulació</a></li>
-                </ul>
-            </div>
+            {% if session.has("user")  %}
+                <div class="col-md-2">
+                    <ul class="list-group">
+                        <li class="list-group-item"><a href="{{ url('mission/index') }}">Poker</a></li>
+                        <li class="list-group-item"><a href="{{ url('medal/show-earned-medals') }}">Medaller</a></li>
+                        <li class="list-group-item"><a href="{{ url('leader-board/list-players') }}">Classificació</a></li>
+                        <li class="list-group-item"><a href="{{ url('crew/find-crew') }}">Tripulació</a></li>
+                        <li class="list-group-item"><a href="{{ url('reward/user-balance') }}">Saldo</a></li>
+                    </ul>
+                </div>
+            {% endif %}
             <div class="col-md-10">
                 {{ get_content() }}
             </div>

@@ -1,7 +1,7 @@
-CSP\Domain\Mission\Entity\Mission:
+CSP\Domain\Gamification\Entity\Medal:
   type: entity
-  repositoryClass: CSP\Infrastructure\Mission\Repository\MissionRepository
-  table: missions
+  repositoryClass: CSP\Infrastructure\Gamification\Repository\MedalRepository
+  table: medals
   id:
     id:
       type: integer
@@ -12,17 +12,17 @@ CSP\Domain\Mission\Entity\Mission:
       generator:
         strategy: IDENTITY
   fields:
-    name:
+    text:
       type: string
       nullable: true
       length: 130
       options:
         fixed: false
       unique: true
-    text:
+    description:
       type: string
       nullable: true
-      length: 130
+      length: 255
       options:
         fixed: false
     isActive:
@@ -31,25 +31,6 @@ CSP\Domain\Mission\Entity\Mission:
       column: is_active
       options:
         default: true
-    score:
-      type: decimal
-      nullable: false
-      precision: 7
-      scale: 3
-      options:
-        default: 0
-    startAt:
-      type: datetime
-      nullable: true
-      column: start_at
-      options:
-        default: null
-    expireAt:
-      type: datetime
-      nullable: true
-      column: expire_at
-      options:
-        default: null
     createdAt:
       type: datetime
       nullable: false
@@ -60,6 +41,10 @@ CSP\Domain\Mission\Entity\Mission:
       column: updated_at
     timezone:
       type: string
+  oneToMany:
+    earnedMedals:
+      targetEntity: CSP\Domain\Gamification\Entity\EarnedMedal
+      mappedBy: medal
   lifecycleCallbacks:
     prePersist: [updatedLifeCycleDates]
     preUpdate: [updatedLifeCycleDates]

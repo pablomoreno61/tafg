@@ -1,0 +1,34 @@
+CSP\Domain\Gamification\Entity\CrewMember:
+  type: entity
+  repositoryClass: CSP\Infrastructure\User\Repository\CrewMemberRepository
+  table: crew_members
+  id:
+    user:
+      associationKey: true
+    medal:
+      associationKey: true
+  fields:
+    updatedAt:
+      type: datetime
+      nullable: false
+      column: updated_at
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+  manyToOne:
+    user:
+      targetEntity: CSP\Domain\User\Entity\User
+      inversedBy: crewMembers
+      joinColumn:
+          name: user_id
+          referencedColumnName: id
+    crew:
+      targetEntity: CSP\Domain\Gamification\Entity\Crew
+      inversedBy: crewMembers
+      joinColumn:
+        name: crew_id
+        referencedColumnName: id
+  lifecycleCallbacks:
+    prePersist: [updatedLifeCycleDates]
+    preUpdate: [updatedLifeCycleDates]

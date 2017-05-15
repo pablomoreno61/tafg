@@ -1,0 +1,34 @@
+CSP\Domain\Gamification\Entity\EarnedPrize:
+  type: entity
+  repositoryClass: CSP\Infrastructure\User\Repository\EarnedPrizeRepository
+  table: earned_prizes
+  id:
+    user:
+      associationKey: true
+    medal:
+      associationKey: true
+  fields:
+    updatedAt:
+      type: datetime
+      nullable: false
+      column: updated_at
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+  manyToOne:
+    user:
+      targetEntity: CSP\Domain\User\Entity\User
+      inversedBy: earnedPrizes
+      joinColumn:
+          name: user_id
+          referencedColumnName: id
+    prize:
+      targetEntity: CSP\Domain\Gamification\Entity\Prize
+      inversedBy: earnedPrizes
+      joinColumn:
+        name: prize_id
+        referencedColumnName: id
+  lifecycleCallbacks:
+    prePersist: [updatedLifeCycleDates]
+    preUpdate: [updatedLifeCycleDates]

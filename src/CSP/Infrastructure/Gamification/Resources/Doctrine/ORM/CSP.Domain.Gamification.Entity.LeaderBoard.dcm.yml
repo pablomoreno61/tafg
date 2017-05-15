@@ -1,7 +1,7 @@
-CSP\Domain\Mission\Entity\Mission:
+CSP\Domain\Gamification\Entity\LeaderBoard:
   type: entity
-  repositoryClass: CSP\Infrastructure\Mission\Repository\MissionRepository
-  table: missions
+  repositoryClass: CSP\Infrastructure\Gamification\Repository\LeaderBoardRepository
+  table: leaderboards
   id:
     id:
       type: integer
@@ -12,44 +12,19 @@ CSP\Domain\Mission\Entity\Mission:
       generator:
         strategy: IDENTITY
   fields:
-    name:
-      type: string
-      nullable: true
-      length: 130
-      options:
-        fixed: false
-      unique: true
     text:
       type: string
       nullable: true
       length: 130
       options:
         fixed: false
+      unique: true
     isActive:
       type: boolean
       nullable: false
       column: is_active
       options:
         default: true
-    score:
-      type: decimal
-      nullable: false
-      precision: 7
-      scale: 3
-      options:
-        default: 0
-    startAt:
-      type: datetime
-      nullable: true
-      column: start_at
-      options:
-        default: null
-    expireAt:
-      type: datetime
-      nullable: true
-      column: expire_at
-      options:
-        default: null
     createdAt:
       type: datetime
       nullable: false
@@ -60,6 +35,10 @@ CSP\Domain\Mission\Entity\Mission:
       column: updated_at
     timezone:
       type: string
+  oneToMany:
+    leaderBoardPlayers:
+      targetEntity: CSP\Domain\Gamification\Entity\LeaderBoardPlayer
+      mappedBy: leaderBoardPlayer
   lifecycleCallbacks:
     prePersist: [updatedLifeCycleDates]
     preUpdate: [updatedLifeCycleDates]

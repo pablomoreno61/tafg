@@ -65,3 +65,35 @@ missionActionParams:
   action: 1
   params: 2
   camelize: true
+medalActionParams:
+  url: /medal/:action/:params
+  namespace: CSP\Application\Gamification\Controller
+  module: gamification
+  controller: medal
+  action: 1
+  params: 2
+  camelize: true
+leaderBoardActionParams:
+  url: /leader-board/:action/:params
+  namespace: CSP\Application\Gamification\Controller
+  module: gamification
+  controller: leaderBoard
+  action: 1
+  params: 2
+  camelize: true
+crewActionParams:
+  url: /crew/:action/:params
+  namespace: CSP\Application\Gamification\Controller
+  module: gamification
+  controller: crew
+  action: 1
+  params: 2
+  camelize: true
+rewardActionParams:
+  url: /reward/:action/:params
+  namespace: CSP\Application\Finance\Controller
+  module: finance
+  controller: reward
+  action: 1
+  params: 2
+  camelize: true

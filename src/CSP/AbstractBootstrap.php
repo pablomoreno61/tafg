@@ -180,5 +180,12 @@ abstract class AbstractBootstrap
             );
             return $missionService;
         });
+
+        $this->getDI()->setShared('rewardService', function() use($di) {
+            $missionService = new MissionService(
+                $di->get('em')->getRepository(Mission::class)
+            );
+            return $missionService;
+        });
     }
 }
