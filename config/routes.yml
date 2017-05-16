@@ -50,6 +50,21 @@ loginActionParams:
   action: 1
   params: 2
   camelize: true
+profileAction:
+  url: /profile/:action
+  namespace: CSP\Application\User\Controller
+  module: user
+  controller: profile
+  action: 1
+  camelize: true
+profileActionParams:
+  url: /profile/:action/:params
+  namespace: CSP\Application\User\Controller
+  module: user
+  controller: profile
+  action: 1
+  params: 2
+  camelize: true
 logout:
   url: /logout
   namespace: CSP\Application\User\Controller

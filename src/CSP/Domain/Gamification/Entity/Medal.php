@@ -3,6 +3,7 @@
 namespace CSP\Domain\Gamification\Entity;
 
 use CSP\Infrastructure\Date\Entity\History;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class Medal extends History
 {
@@ -18,6 +19,8 @@ class Medal extends History
 
     public function __construct()
     {
+        parent::__construct();
+
         $this->earnedMedals = new ArrayCollection();
     }
 

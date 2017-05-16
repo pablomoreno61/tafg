@@ -9,7 +9,10 @@
     <label for="password">Contrasenya</label>
     <input type="password" name="password" id="password" class="form-control" placeholder="Contrasenya" required>
     <label for="repassword">Repeteix contrasenya</label>
-    <input type="password" name="repassword" id="repassword" class="form-control" placeholder="Repteix Contrasenya" required>
+    <input type="password" name="repassword" id="repassword" class="form-control" placeholder="Repteix Contrasenya" required><br>
+    <label for="refererEmail">E-mail del afiliador</label>
+    <input type="email" name="refererEmail" id="refererEmail" class="form-control" placeholder="Adreça e-mail" required autofocus><br>
+
     <button class="btn btn-lg btn-primary btn-block" type="submit">Registra't</button>
     Si ja tens usuari, <a href="{{ url('login') }}">inicia sessió aquí</a>
 </form>

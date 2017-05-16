@@ -10,5 +10,5 @@ interface UserRepositoryInterface
 
     public function login(string $email, string $password);
 
-    public function findUser(int $userId);
+    public function findUserById($userId);
 }

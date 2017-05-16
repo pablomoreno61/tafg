@@ -3,7 +3,7 @@
 namespace CSP\Domain\User\Exception;
 
 use CSP\Domain\User\Entity\User;
-use \Phalcon\Exception;
+use Phalcon\Exception;
 
 class UserAlreadyExistsException extends Exception
 {

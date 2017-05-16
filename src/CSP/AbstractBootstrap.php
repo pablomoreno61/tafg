@@ -3,11 +3,18 @@
 namespace CSP;
 
 use CSP\Domain\Environment\Exception\UnexpectedConfigFileException;
+use CSP\Domain\Finance\Entity\Reward;
+use CSP\Domain\Finance\Service\RewardService;
+use CSP\Domain\Gamification\Entity\Medal;
+use CSP\Domain\Gamification\Entity\Prize;
+use CSP\Domain\Gamification\Entity\Rank;
+use CSP\Domain\Gamification\Service\RankService;
 use CSP\Domain\Mission\Entity\Mission;
 use CSP\Domain\Mission\Service\MissionService;
 use CSP\Domain\User\Entity\User;
 use CSP\Domain\User\Service\AuthenticationService;
 use CSP\Domain\User\Service\SignupService;
+use CSP\Domain\User\Service\UserService;
 use CSP\Infrastructure\Doctrine\DBAL\Types\Password;
 use CSP\Infrastructure\Doctrine\DBAL\Types\UTCDateTimeType;
 use Doctrine\Common\Cache as DoctrineCache;
@@ -181,11 +188,28 @@ abstract class AbstractBootstrap
             return $missionService;
         });
 
-        $this->getDI()->setShared('rewardService', function() use($di) {
-            $missionService = new MissionService(
-                $di->get('em')->getRepository(Mission::class)
+        $this->getDI()->setShared('userService', function() use($di) {
+            $userService = new UserService(
+                $di->get('em')->getRepository(User::class)
             );
-            return $missionService;
+            return $userService;
+        });
+
+        $this->getDI()->setShared('rewardService', function() use($di) {
+            $rewardService = new RewardService(
+                $di->get('em')->getRepository(Reward::class),
+                $di->get('userService')
+            );
+            return $rewardService;
+        });
+
+        $this->getDI()->setShared('rankService', function() use($di) {
+            $medalService = new RankService(
+                $di->get('em')->getRepository(Medal::class),
+                $di->get('em')->getRepository(Prize::class),
+                $di->get('em')->getRepository(Rank::class)
+            );
+            return $medalService;
         });
     }
 }

@@ -19,9 +19,10 @@ class SignupController extends SharedController
     {
         $email = $this->request->getPost('email', 'string', null);
         $password = $this->request->getPost('password', 'string', null);
+        $refererEmail = $this->request->getPost('refererEmail', 'string', null);
 
         try {
-            $user = $this->signupService->signup($email, $password);
+            $user = $this->signupService->signup($email, $password, $refererEmail);
 
             $this->session->set('user', $user);
 

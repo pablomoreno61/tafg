@@ -3,6 +3,7 @@
 namespace CSP\Domain\Gamification\Entity;
 
 use CSP\Infrastructure\Date\Entity\History;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class Crew extends History
 {
@@ -24,6 +25,8 @@ class Crew extends History
 
     public function __construct()
     {
+        parent::__construct();
+
         $this->crewMembers = new ArrayCollection();
     }
 

@@ -2,6 +2,7 @@
 
 namespace CSP\Domain\User\Service;
 
+use CSP\Domain\User\Entity\User;
 use CSP\Domain\User\Repository\UserRepositoryInterface;
 
 class UserService implements UserServiceInterface
@@ -13,8 +14,13 @@ class UserService implements UserServiceInterface
         $this->userRepository = $userRepository;
     }
 
-    public function findUser(int $userId)
+    public function findUserById($userId)
     {
-        return $this->userRepository->findUser($userId);
+        return $this->userRepository->findUserById($userId);
+    }
+
+    public function save(User $user)
+    {
+        $this->userRepository->save($user);
     }
 }

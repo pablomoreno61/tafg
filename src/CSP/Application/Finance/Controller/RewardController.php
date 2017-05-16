@@ -2,7 +2,10 @@
 
 namespace CSP\Application\Finance\Controller;
 
-class RewardController
+use CSP\Application\Shared\Controller\SharedController;
+use CSP\Domain\Finance\Exception\RewardAlreadyExistsException;
+
+class RewardController extends SharedController
 {
     /**
      * @todo
@@ -10,14 +13,19 @@ class RewardController
     public function addUserRewardAction()
     {
         $credits = $this->request->get('credits');
-        $campaignId = $this->request->get('campaignId', 'int', null);
+        $name = $this->request->get('name', 'string', null);
 
-        $this->rewardService->addReward(
-            $this->session->user->getId(),
-            $credits
-        );
+        try {
+            $this->rewardService->addReward(
+                $this->session->user->getId(),
+                $name,
+                $credits
+            );
 
-        $this->view->campaignId = $campaignId;
+            $this->view->message = "Campanya {$name} remunerada correctament.";
+        } catch (RewardAlreadyExistsException $e) {
+            $this->view->message = 'Aquesta campanya ja ha estat remunerada previament.';
+        }
     }
 
     /**

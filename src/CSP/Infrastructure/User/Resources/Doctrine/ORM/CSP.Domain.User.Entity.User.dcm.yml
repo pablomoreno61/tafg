@@ -86,6 +86,13 @@ CSP\Domain\User\Entity\User:
     earnedPrizes:
       targetEntity: CSP\Domain\Gamification\Entity\EarnedPrize
       mappedBy: user
+  oneToOne:
+    userReferer:
+      targetEntity: CSP\Domain\User\Entity\User
+      joinColumn:
+        name: user_referer_id
+        referencedColumnName: id
+        nullable: true
   lifecycleCallbacks:
     prePersist: [updatedLifeCycleDates]
     preUpdate: [updatedLifeCycleDates]

@@ -11,7 +11,16 @@ CSP\Domain\Finance\Entity\Reward:
       id: true
       generator:
         strategy: IDENTITY
+  uniqueConstraints:
+    reward_idx:
+      columns: [ name, user_id ]
   fields:
+    name:
+      type: string
+      nullable: true
+      length: 130
+      options:
+        fixed: false
     credits:
       type: decimal
       nullable: false

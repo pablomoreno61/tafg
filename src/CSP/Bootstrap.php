@@ -7,6 +7,7 @@ use Phalcon\Config\Adapter\Yaml as ConfigYaml;
 use Phalcon\Config as PhConfig;
 use Phalcon\DI\FactoryDefault;
 use Phalcon\Events\Manager as EventsManager;
+use Phalcon\Flash\Session as FlashSession;
 use Phalcon\Loader;
 use Phalcon\Mvc\Application;
 use Phalcon\Mvc\Dispatcher as PhDispatcher;
@@ -34,6 +35,7 @@ class Bootstrap extends AbstractBootstrap
             'url',
             'view',
             'dispatcher',
+            'flash',
             'services'
         );
 
@@ -176,5 +178,19 @@ class Bootstrap extends AbstractBootstrap
 
             return $dispatcher;
         }, true);
+    }
+
+    protected function initFlash()
+    {
+        $this->di->set('flashSession', function () {
+            return new FlashSession(
+                [
+                    'error'   => 'alert alert-danger',
+                    'success' => 'alert alert-success',
+                    'notice'  => 'alert alert-info',
+                    'warning' => 'alert alert-warning'
+                ]
+            );
+        });
     }
 }

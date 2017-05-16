@@ -35,8 +35,12 @@ class User extends History
 
     private $earnedPrizes;
 
+    private $userReferer;
+
     public function __construct()
     {
+        parent::__construct();
+
         $this->earnedMedals = new ArrayCollection();
         $this->crewMembers = new ArrayCollection();
         $this->leaderBoardPlayers = new ArrayCollection();
@@ -282,6 +286,24 @@ class User extends History
     public function setEarnedPrizes($earnedPrizes)
     {
         $this->earnedPrizes = $earnedPrizes;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserReferer()
+    {
+        return $this->userReferer;
+    }
+
+    /**
+     * @param mixed $userReferer
+     * @return User
+     */
+    public function setUserReferer(User $userReferer)
+    {
+        $this->userReferer = $userReferer;
         return $this;
     }
 }

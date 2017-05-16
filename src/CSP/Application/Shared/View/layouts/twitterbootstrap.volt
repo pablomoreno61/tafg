@@ -25,6 +25,7 @@
                 <form class="navbar-form navbar-right">
                 {% if session.has("user")  %}
                     <div class="form-group">
+                        <a class="navbar-brand" href="{{ url('/profile/edit') }}">Benvingut {{ session.user.getEmail() }}</a>
                         <a href="{{ url('logout') }}" class="btn btn-success">Sortir</a>
                     </div>
                 {% else %}
@@ -52,12 +53,13 @@
                         <li class="list-group-item"><a href="{{ url('mission/index') }}">Poker</a></li>
                         <li class="list-group-item"><a href="{{ url('medal/show-earned-medals') }}">Medaller</a></li>
                         <li class="list-group-item"><a href="{{ url('leader-board/list-players') }}">Classificació</a></li>
-                        <li class="list-group-item"><a href="{{ url('crew/find-crew') }}">Tripulació</a></li>
+                        <li class="list-group-item"><a href="{{ url('crew/show') }}">Tripulació</a></li>
                         <li class="list-group-item"><a href="{{ url('reward/user-balance') }}">Saldo</a></li>
                     </ul>
                 </div>
             {% endif %}
             <div class="col-md-10">
+                <p>{{ flashSession.output() }}</p>
                 {{ get_content() }}
             </div>
         </div>

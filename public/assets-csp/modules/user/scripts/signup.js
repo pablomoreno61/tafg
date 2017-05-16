@@ -18,6 +18,9 @@ $(document).ready(function() {
                 email: true,
                 required: true
             },
+            refererEmail: {
+                email: true
+            },
             password: {
                 required: true,
                 minlength: 5
@@ -34,6 +37,9 @@ $(document).ready(function() {
             email: {
                 email: "Format d'email incorrecte",
                 required: "Email requerit"
+            },
+            refererEmail: {
+                email: "Format d'email incorrecte"
             },
             password: {
                 required: "Contrasenya requerida",

@@ -2,7 +2,9 @@
 
 namespace CSP\Application\Gamification\Controller;
 
-class CrewController
+use CSP\Application\Shared\Controller\SharedController;
+
+class CrewController extends SharedController
 {
     /**
      * @todo

@@ -8,5 +8,5 @@ interface MissionRepositoryInterface
 {
     public function save(Mission $mission);
 
-    public function findMission(int $missionId);
+    public function findOneBy(array $criteria, array $orderBy = null);
 }

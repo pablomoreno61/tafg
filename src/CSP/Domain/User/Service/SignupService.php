@@ -16,13 +16,19 @@ class SignupService implements SignupServiceInterface
         $this->userRepository = $userRepository;
     }
 
-    public function signup(string $email, string $password)
+    public function signup(string $email, string $password, string $refererEmail = null)
     {
         $user = new User();
         $user
             ->setEmail($email)
             ->setPassword($password)
             ->setActive(true);
+
+        $userReferer = $this->userRepository->findOneBy(array('email' => $refererEmail));
+
+        if (!empty($userReferer)) {
+            $user->setUserReferer($userReferer);
+        }
 
         try {
             $this->userRepository->save($user);

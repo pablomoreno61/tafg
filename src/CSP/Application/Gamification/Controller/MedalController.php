@@ -2,7 +2,9 @@
 
 namespace CSP\Application\Gamification\Controller;
 
-class MedalController
+use CSP\Application\Shared\Controller\SharedController;
+
+class MedalController extends SharedController
 {
     /**
      * @todo

@@ -9,7 +9,7 @@ class Reward extends History
 {
     private $id;
 
-    private $text;
+    private $name;
 
     private $isActive = true;
 
@@ -17,10 +17,13 @@ class Reward extends History
 
     private $user;
 
-    public function __construct(User $user, $credits)
+    public function __construct(User $user, string $name, float $credits)
     {
+        parent::__construct();
+
         $this
             ->setUser($user)
+            ->setName($name)
             ->setCredits($credits);
     }
 
@@ -39,6 +42,24 @@ class Reward extends History
     public function setId(int $id)
     {
         $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     * @return Reward
+     */
+    public function setName(string $name)
+    {
+        $this->name = $name;
         return $this;
     }
 

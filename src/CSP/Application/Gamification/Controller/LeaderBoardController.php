@@ -2,7 +2,9 @@
 
 namespace CSP\Application\Gamification\Controller;
 
-class LeaderBoardController
+use CSP\Application\Shared\Controller\SharedController;
+
+class LeaderBoardController extends SharedController
 {
     /**
      * @todo

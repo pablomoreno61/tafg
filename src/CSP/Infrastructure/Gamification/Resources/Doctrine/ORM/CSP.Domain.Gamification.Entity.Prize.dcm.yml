@@ -23,7 +23,7 @@ CSP\Domain\Gamification\Entity\Prize:
       type: integer
       nullable: false
       options:
-        unsigned: true
+        unsigned: false
         default: 0
       column: score
     isActive:
