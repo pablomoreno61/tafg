@@ -5,9 +5,14 @@ namespace CSP;
 use CSP\Domain\Environment\Exception\UnexpectedConfigFileException;
 use CSP\Domain\Finance\Entity\Reward;
 use CSP\Domain\Finance\Service\RewardService;
+use CSP\Domain\Gamification\Entity\Crew;
+use CSP\Domain\Gamification\Entity\CrewMember;
+use CSP\Domain\Gamification\Entity\EarnedMedal;
+use CSP\Domain\Gamification\Entity\EarnedPrize;
 use CSP\Domain\Gamification\Entity\Medal;
 use CSP\Domain\Gamification\Entity\Prize;
 use CSP\Domain\Gamification\Entity\Rank;
+use CSP\Domain\Gamification\Service\CrewService;
 use CSP\Domain\Gamification\Service\RankService;
 use CSP\Domain\Mission\Entity\Mission;
 use CSP\Domain\Mission\Service\MissionService;
@@ -90,7 +95,6 @@ abstract class AbstractBootstrap
         Autoloader::register(PROJECT_PATH . $config->proxyDir, $config->proxyNamespace);
 
         Type::addType('password', Password::class);
-        Type::addType('uuid', 'Ramsey\Uuid\Doctrine\UuidType');
         Type::overrideType('datetime', UTCDateTimeType::class);
         Type::overrideType('datetimetz', UTCDateTimeType::class);
 
@@ -176,7 +180,9 @@ abstract class AbstractBootstrap
 
         $this->getDI()->setShared('signupService', function() use($di) {
             $signupService = new SignupService(
-                $di->get('em')->getRepository(User::class)
+                $di->get('em')->getRepository(User::class),
+                $di->get('crewService'),
+                $di->get('rankService')
             );
             return $signupService;
         });
@@ -198,7 +204,9 @@ abstract class AbstractBootstrap
         $this->getDI()->setShared('rewardService', function() use($di) {
             $rewardService = new RewardService(
                 $di->get('em')->getRepository(Reward::class),
-                $di->get('userService')
+                $di->get('rankService'),
+                $di->get('userService'),
+                $di->get('missionService')
             );
             return $rewardService;
         });
@@ -207,9 +215,21 @@ abstract class AbstractBootstrap
             $medalService = new RankService(
                 $di->get('em')->getRepository(Medal::class),
                 $di->get('em')->getRepository(Prize::class),
-                $di->get('em')->getRepository(Rank::class)
+                $di->get('em')->getRepository(Rank::class),
+                $di->get('em')->getRepository(EarnedMedal::class),
+                $di->get('em')->getRepository(EarnedPrize::class),
+                $di->get('userService')
             );
             return $medalService;
+        });
+
+        $this->getDI()->setShared('crewService', function() use($di) {
+            $crewService = new CrewService(
+                $di->get('em')->getRepository(Crew::class),
+                $di->get('em')->getRepository(CrewMember::class),
+                $di->get('userService')
+            );
+            return $crewService;
         });
     }
 }

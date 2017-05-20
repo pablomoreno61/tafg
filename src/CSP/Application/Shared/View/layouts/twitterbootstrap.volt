@@ -52,9 +52,9 @@
                     <ul class="list-group">
                         <li class="list-group-item"><a href="{{ url('mission/index') }}">Poker</a></li>
                         <li class="list-group-item"><a href="{{ url('medal/show-earned-medals') }}">Medaller</a></li>
-                        <li class="list-group-item"><a href="{{ url('leader-board/list-players') }}">Classificació</a></li>
+                        <li class="list-group-item"><a href="{{ url('leader-board/show-players') }}">Classificació</a></li>
                         <li class="list-group-item"><a href="{{ url('crew/show') }}">Tripulació</a></li>
-                        <li class="list-group-item"><a href="{{ url('reward/user-balance') }}">Saldo</a></li>
+                        <li class="list-group-item"><a href="{{ url('reward/show-user-balance') }}">Saldo</a></li>
                     </ul>
                 </div>
             {% endif %}

@@ -19,7 +19,8 @@ $(document).ready(function() {
                 required: true
             },
             refererEmail: {
-                email: true
+                email: true,
+                required: false
             },
             password: {
                 required: true,
@@ -28,9 +29,6 @@ $(document).ready(function() {
             repassword: {
                 required: true,
                 equalTo: "#password"
-            },
-            isPrivacyPolicyAccepted: {
-                required: true
             }
         },
         messages: {
@@ -48,9 +46,6 @@ $(document).ready(function() {
             repassword: {
                 required: "Repeteix la contrasenya",
                 equalTo: "Les contrasenyes han de coincidir"
-            },
-            isPrivacyPolicyAccepted: {
-                required: "Sisplau, accepti les condicions"
             }
         },
         submitHandler: function() {

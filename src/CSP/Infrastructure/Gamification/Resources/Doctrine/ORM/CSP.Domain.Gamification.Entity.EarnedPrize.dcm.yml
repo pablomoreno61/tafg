@@ -1,12 +1,16 @@
 CSP\Domain\Gamification\Entity\EarnedPrize:
   type: entity
-  repositoryClass: CSP\Infrastructure\User\Repository\EarnedPrizeRepository
+  repositoryClass: CSP\Infrastructure\Gamification\Repository\EarnedPrizeRepository
   table: earned_prizes
   id:
-    user:
-      associationKey: true
-    medal:
-      associationKey: true
+    id:
+      type: integer
+      nullable: false
+      options:
+        unsigned: true
+      id: true
+      generator:
+        strategy: IDENTITY
   fields:
     updatedAt:
       type: datetime

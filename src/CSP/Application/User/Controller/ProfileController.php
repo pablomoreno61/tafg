@@ -54,10 +54,14 @@ class ProfileController extends SharedController
     }
 
     /**
-     * @todo
+     * @todo: medals and leaderboard position
      */
-    public function sharedAction()
+    public function showAction()
     {
+        $userId = $this->request->get('id', 'int', $this->session->user->getId());
 
+        $user = $this->userService->findUserById($userId);
+
+        $this->view->user = $user;
     }
 }

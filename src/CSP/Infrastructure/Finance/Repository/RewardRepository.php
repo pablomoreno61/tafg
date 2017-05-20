@@ -14,6 +14,20 @@ class RewardRepository extends EntityRepository implements RewardRepositoryInter
         $this->getEntityManager()->flush();
     }
 
+    public function countRewardsByUser(int $userId)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb
+            ->select(array('COUNT(reward.id)'))
+            ->from('CSP\Domain\Finance\Entity\Reward', 'reward')
+            ->where($qb->expr()->orX(
+                $qb->expr()->eq('reward.isActive', true)
+            ));
+
+        return $qb->getQuery()->getSingleScalarResult();
+    }
+
     public function findUserBalance(int $userId)
     {
         // TODO: Implement findUserBalance() method.

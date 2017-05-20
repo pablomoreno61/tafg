@@ -1,11 +1,11 @@
 CSP\Domain\Gamification\Entity\LeaderBoardPlayer:
   type: entity
-  repositoryClass: CSP\Infrastructure\User\Repository\LeaderBoardPlayerRepository
+  repositoryClass: CSP\Infrastructure\Gamification\Repository\LeaderBoardPlayerRepository
   table: leaderboard_players
   id:
     user:
       associationKey: true
-    medal:
+    leaderBoard:
       associationKey: true
   fields:
     currentPosition:

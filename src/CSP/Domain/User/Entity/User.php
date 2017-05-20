@@ -2,6 +2,7 @@
 
 namespace CSP\Domain\User\Entity;
 
+use CSP\Domain\Gamification\Entity\Rank;
 use CSP\Infrastructure\Date\Entity\History;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -36,6 +37,8 @@ class User extends History
     private $earnedPrizes;
 
     private $userReferer;
+
+    private $rank;
 
     public function __construct()
     {
@@ -121,9 +124,9 @@ class User extends History
      * @param mixed $rankScore
      * @return User
      */
-    public function setRankScore(int $rankScore)
+    public function incRankScore(int $rankScore)
     {
-        $this->rankScore = $rankScore;
+        $this->rankScore += $rankScore;
         return $this;
     }
 
@@ -305,5 +308,31 @@ class User extends History
     {
         $this->userReferer = $userReferer;
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRank()
+    {
+        return $this->rank;
+    }
+
+    /**
+     * @param mixed $rank
+     * @return User
+     */
+    public function setRank(Rank $rank)
+    {
+        $this->rank = $rank;
+        return $this;
+    }
+
+    public function getRankProgress()
+    {
+        return round(
+            ($this->getRankScore() / $this->getRank()->getScoreLimit()) * 100,
+            0
+        );
     }
 }

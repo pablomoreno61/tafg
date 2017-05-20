@@ -8,11 +8,6 @@
     <input type="email" name="email" id="email" class="form-control" placeholder="Adreça e-mail" required autofocus>
     <label for="password">Contrasenya</label>
     <input type="password" name="password" id="password" class="form-control" placeholder="Contrasenya" required>
-    <div class="checkbox">
-        <label>
-            <input type="checkbox" value="remember-me"> Recorda'm
-        </label>
-    </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar sessió</button>
     Si encara no tens usuari, <a href="{{ url('signup') }}">registra't aquí</a>
 </form>

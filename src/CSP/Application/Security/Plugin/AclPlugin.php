@@ -59,7 +59,7 @@ class AclPlugin extends Plugin
         // Private area resources (logged access)
         $privateResources = array(
             'finance\reward' => array('addUserReward', 'showUserBalance'),
-            'gamification\crew' => array('edit', 'show'),
+            'gamification\crew' => array('edit', 'save', 'show'),
             'gamification\leaderBoard' => array('showPlayers'),
             'gamification\medal' => array('showEarnedMedals'),
             'mission\mission' => array('index'),
@@ -78,7 +78,7 @@ class AclPlugin extends Plugin
         $publicResources = array(
             'user\login' => array('index', 'login'),
             'user\signup' => array('index', 'signup'),
-            'user\profile' => array('shared')
+            'user\profile' => array('show')
         );
 
         foreach ($publicResources as $resourceName => $actions) {

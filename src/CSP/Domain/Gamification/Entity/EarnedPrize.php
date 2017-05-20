@@ -7,9 +7,16 @@ use CSP\Infrastructure\Date\Entity\History;
 
 class EarnedPrize extends History
 {
+    private $id;
+
     private $user;
 
     private $prize;
+
+    public function getId()
+    {
+        return $this->id;
+    }
 
     public function setUser(User $user)
     {

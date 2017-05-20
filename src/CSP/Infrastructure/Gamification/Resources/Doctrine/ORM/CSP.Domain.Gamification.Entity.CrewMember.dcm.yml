@@ -1,11 +1,11 @@
 CSP\Domain\Gamification\Entity\CrewMember:
   type: entity
-  repositoryClass: CSP\Infrastructure\User\Repository\CrewMemberRepository
+  repositoryClass: CSP\Infrastructure\Gamification\Repository\CrewMemberRepository
   table: crew_members
   id:
     user:
       associationKey: true
-    medal:
+    crew:
       associationKey: true
   fields:
     updatedAt:

@@ -2,6 +2,7 @@
 
 namespace CSP\Domain\Gamification\Entity;
 
+use CSP\Domain\User\Entity\User;
 use CSP\Infrastructure\Date\Entity\History;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -22,6 +23,8 @@ class Crew extends History
     private $logo;
 
     private $crewMembers;
+
+    private $user;
 
     public function __construct()
     {
@@ -154,5 +157,21 @@ class Crew extends History
     {
         $this->logo = $logo;
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser(User $user)
+    {
+        $this->user = $user;
     }
 }

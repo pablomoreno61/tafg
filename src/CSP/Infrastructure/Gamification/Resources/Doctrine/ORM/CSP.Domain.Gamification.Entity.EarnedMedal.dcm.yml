@@ -1,6 +1,6 @@
 CSP\Domain\Gamification\Entity\EarnedMedal:
   type: entity
-  repositoryClass: CSP\Infrastructure\User\Repository\EarnedMedalRepository
+  repositoryClass: CSP\Infrastructure\Gamification\Repository\EarnedMedalRepository
   table: earned_medals
   id:
     user:

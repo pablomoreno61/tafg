@@ -8,5 +8,7 @@ interface RewardRepositoryInterface
 {
     public function save(Reward $reward);
 
+    public function countRewardsByUser(int $userId);
+
     public function findUserBalance(int $userId);
 }

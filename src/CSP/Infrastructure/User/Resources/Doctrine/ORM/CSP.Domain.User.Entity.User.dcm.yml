@@ -4,13 +4,11 @@ CSP\Domain\User\Entity\User:
   table: users
   id:
     id:
-      type: uuid
+      type: integer
       nullable: false
       id: true
       generator:
-        strategy: CUSTOM
-      customIdGenerator:
-        class: Ramsey\Uuid\Doctrine\UuidGenerator
+        strategy: IDENTITY
   fields:
     username:
       type: string
@@ -86,13 +84,19 @@ CSP\Domain\User\Entity\User:
     earnedPrizes:
       targetEntity: CSP\Domain\Gamification\Entity\EarnedPrize
       mappedBy: user
-  oneToOne:
+  manyToOne:
     userReferer:
       targetEntity: CSP\Domain\User\Entity\User
       joinColumn:
         name: user_referer_id
         referencedColumnName: id
         nullable: true
+    rank:
+      targetEntity: CSP\Domain\Gamification\Entity\Rank
+      joinColumn:
+        name: rank_id
+        referencedColumnName: id
+        nullable: false
   lifecycleCallbacks:
     prePersist: [updatedLifeCycleDates]
     preUpdate: [updatedLifeCycleDates]

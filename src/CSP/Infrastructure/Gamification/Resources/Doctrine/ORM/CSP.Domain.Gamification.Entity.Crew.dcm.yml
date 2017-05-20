@@ -19,6 +19,12 @@ CSP\Domain\Gamification\Entity\Crew:
       options:
         fixed: false
       unique: true
+    logo:
+      type: string
+      nullable: true
+      length: 130
+      options:
+        fixed: false
     crewSize:
       type: integer
       nullable: false
@@ -28,11 +34,11 @@ CSP\Domain\Gamification\Entity\Crew:
       column: crew_size
     latestEnrollmentAt:
       type: datetime
-      nullable: false
+      nullable: true
       column: latest_enrollment_at
     latestQuitAt:
       type: datetime
-      nullable: false
+      nullable: true
       column: latest_quit_at
     isActive:
       type: boolean
@@ -54,6 +60,12 @@ CSP\Domain\Gamification\Entity\Crew:
     crewMembers:
       targetEntity: CSP\Domain\Gamification\Entity\CrewMember
       mappedBy: crew
+  oneToOne:
+    user:
+      targetEntity: CSP\Domain\User\Entity\User
+      joinColumn:
+          name: user_id
+          referencedColumnName: id
   lifecycleCallbacks:
     prePersist: [updatedLifeCycleDates]
     preUpdate: [updatedLifeCycleDates]

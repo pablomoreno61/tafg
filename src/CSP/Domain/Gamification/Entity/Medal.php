@@ -7,6 +7,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 class Medal extends History
 {
+    const FIRST_LEAD = 4;
+    const FIRST_POKER = 6;
+
     private $id;
 
     private $text;

@@ -33,6 +33,15 @@ class RewardController extends SharedController
      */
     public function showUserBalanceAction()
     {
+        $userBalance = $this->rewardService->findUserBalance(
+            $this->session->user->getId()
+        );
 
+        $rewards = $this->rewardService->findUserRewards(
+            $this->session->user->getId()
+        );
+
+        $this->view->userBalance = $userBalance;
+        $this->view->rewards = $rewards;
     }
 }

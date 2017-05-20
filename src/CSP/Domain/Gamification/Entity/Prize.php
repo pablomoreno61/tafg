@@ -7,6 +7,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 class Prize extends History
 {
+    const MEDAL_EARNED = 1;
+    const POKER_COMPLETED = 2;
+    const LEAD_REWARDED = 5;
+
     private $id;
 
     private $text;
