@@ -40,7 +40,7 @@
                     <tr>
                         <td>
                             {% if crewMember.getUser().getAvatar() is empty %}
-                                <img src="https://s-media-cache-ak0.pinimg.com/736x/d6/84/0d/d6840d9e413c59fab3d9c843518fe351.jpg" width="50" height="50" />
+                                <img src="/assets-csp/modules/gamification/img/avatar.jpg" width="50" height="50" />
                             {% else %}
                                 <img src="/uploads/avatars/dev/"{{ crewMember.getUser().getAvatar() }}" />
                             {% endif %}

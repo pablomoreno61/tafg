@@ -11,7 +11,7 @@ use Phalcon\CLI\Task as PhTask;
 class SetupTask extends PhTask
 {
     /**
-     * php /var/www/tfg/bin/cli.php dev setup/database initial
+     * php /var/www/tfg/bin/cli.php dev gamification/setup initial
      */
     public function initialAction()
     {
@@ -25,7 +25,7 @@ class SetupTask extends PhTask
     }
 
     /**
-     * php /var/www/tfg/bin/cli.php dev setup/database createMissions
+     * php /var/www/tfg/bin/cli.php dev gamification/setup createMissions
      */
     public function createMissionsAction()
     {
@@ -51,7 +51,7 @@ class SetupTask extends PhTask
     }
 
     /**
-     * php /var/www/tfg/bin/cli.php dev setup/database createMedals
+     * php /var/www/tfg/bin/cli.php dev gamification/setup createMedals
      */
     public function createMedalsAction()
     {
@@ -68,7 +68,7 @@ class SetupTask extends PhTask
             'Has cobrat per primera vegada',
             'Has completat l\'enquesta de perfilació',
             'Has personalitzat el perfil',
-            'Has fet 5 logins consecutius en 5 dies diferents',
+            '5 logins consecutius en 5 dies diferents',
             'Has fet click en 25 campanyes diferents',
             'T\'has registrat en 25 campanyes de registre',
             'Has realitzat 25 compres cashback',

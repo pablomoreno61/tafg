@@ -10,7 +10,7 @@
 <div>
     <div style="width: 20%; float: left">
         {% if user.getAvatar() is empty %}
-            <img src="https://s-media-cache-ak0.pinimg.com/736x/d6/84/0d/d6840d9e413c59fab3d9c843518fe351.jpg" width="100" height="100" />
+            <img src="/assets-csp/modules/gamification/img/avatar.jpg" width="100" height="100" />
         {% else %}
             <img src="/uploads/avatars/dev/"{{ user.getAvatar() }}" />
         {% endif %}

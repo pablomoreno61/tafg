@@ -60,6 +60,11 @@ class RankService implements RankServiceInterface
         $this->addEarnedPrize($user, Prize::MEDAL_EARNED);
     }
 
+    public function findEarnedMedals(int $userId)
+    {
+        return $this->earnedMedalRepository->findBy(array('user' => $userId));
+    }
+
     /**
      * @param User $user
      * @param int $prizeId
@@ -82,6 +87,11 @@ class RankService implements RankServiceInterface
     public function findOneMedalBy(array $criteria)
     {
         return $this->medalRepository->findOneBy($criteria);
+    }
+
+    public function findAllMedals()
+    {
+        return $this->medalRepository->findAll();
     }
 
     public function saveMedal(Medal $medal)
