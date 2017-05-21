@@ -4,7 +4,7 @@
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     <strong>Compte!</strong> L'usuari introduït ja existeix
 </div>
-<a href="{{ url('/profile/shared') }}">Veure perfil públic</a>
+<a href="{{ url('/profile/show') }}">Veure perfil públic</a>
 <form class="form-sign" id="profile-form" method="post" action="{{ url('/profile/save') }}" enctype="multipart/form-data">
     <h2 class="form-sign-heading">Personalitza el teu perfil</h2>
     <label for="nickname">Nickname</label>

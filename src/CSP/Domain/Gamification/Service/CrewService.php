@@ -69,5 +69,9 @@ class CrewService implements CrewServiceInterface
             ->setCrew($crew);
 
         $this->crewMemberRepository->save($crewMember);
+
+        $crew->setLatestEnrollmentAt(new \DateTime());
+
+        $this->crewRepository->save($crew);
     }
 }

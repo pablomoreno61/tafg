@@ -17,7 +17,7 @@ CSP\Domain\Gamification\Entity\LeaderBoardPlayer:
       column: current_position
     latestPosition:
       type: integer
-      nullable: false
+      nullable: true
       options:
         unsigned: true
         default: 0

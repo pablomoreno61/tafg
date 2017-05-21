@@ -21,8 +21,9 @@ class RewardRepository extends EntityRepository implements RewardRepositoryInter
         $qb
             ->select(array('COUNT(reward.id)'))
             ->from('CSP\Domain\Finance\Entity\Reward', 'reward')
-            ->where($qb->expr()->orX(
-                $qb->expr()->eq('reward.isActive', true)
+            ->where($qb->expr()->andX(
+                $qb->expr()->eq('reward.isActive', true),
+                $qb->expr()->eq('reward.user', $userId)
             ));
 
         return $qb->getQuery()->getSingleScalarResult();

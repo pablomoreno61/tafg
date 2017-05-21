@@ -7,9 +7,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 class LeaderBoard extends History
 {
+    const HISTORIC_BY_POINTS = 1;
+
     private $id;
 
     private $text;
+
+    private $description;
 
     private $isActive = true;
 
@@ -61,6 +65,23 @@ class LeaderBoard extends History
     /**
      * @return mixed
      */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param mixed $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
     public function isActive()
     {
         return $this->isActive;
@@ -76,5 +97,21 @@ class LeaderBoard extends History
         return $this;
     }
 
+    /**
+     * @return ArrayCollection
+     */
+    public function getLeaderBoardPlayers()
+    {
+        return $this->leaderBoardPlayers;
+    }
 
+    /**
+     * @param ArrayCollection $leaderBoardPlayers
+     * @return LeaderBoard
+     */
+    public function setLeaderBoardPlayers($leaderBoardPlayers): LeaderBoard
+    {
+        $this->leaderBoardPlayers = $leaderBoardPlayers;
+        return $this;
+    }
 }

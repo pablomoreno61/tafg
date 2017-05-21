@@ -11,7 +11,7 @@ class LeaderBoardPlayer extends History
 
     private $latestPosition;
 
-    private $credits;
+    private $credits = 0;
 
     private $user;
 
@@ -61,11 +61,16 @@ class LeaderBoardPlayer extends History
         return $this->credits;
     }
 
+    public function incCredits(float $credits)
+    {
+        return $this->setCredits($this->credits + $credits);
+    }
+
     /**
      * @param mixed $creditsEarned
      * @return LeaderBoardPlayer
      */
-    public function setCredits($credits)
+    public function setCredits(float $credits)
     {
         $this->credits = $credits;
         return $this;
@@ -86,7 +91,6 @@ class LeaderBoardPlayer extends History
     public function setLeaderBoard(LeaderBoard $leaderBoard)
     {
         $this->leaderBoard = $leaderBoard;
-
         return $this;
     }
 

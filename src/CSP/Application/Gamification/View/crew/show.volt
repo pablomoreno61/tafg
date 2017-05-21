@@ -16,6 +16,7 @@
                 {% endif %}
             </p>
             <p>Data de fundació: {{ crew.getCreatedAt().format('d/m/Y H:i') }}</p>
+            <p>Data d'últim allistament: {{ crew.getLatestEnrollmentAt().format('d/m/Y H:i') }}</p>
         </div>
     {% endif %}
 </div>
@@ -42,15 +43,17 @@
                             {% if crewMember.getUser().getAvatar() is empty %}
                                 <img src="/assets-csp/modules/gamification/img/avatar.jpg" width="50" height="50" />
                             {% else %}
-                                <img src="/uploads/avatars/dev/"{{ crewMember.getUser().getAvatar() }}" />
+                                <img src="/uploads/avatars/dev/{{ crewMember.getUser().getAvatar() }}" width="50" height="50" />
                             {% endif %}
                         </td>
                         <td>
-                            {% if crewMember.getUser().getNickname() is empty %}
-                                {{ crewMember.getUser().getEmail() }}
-                            {% else %}
-                                {{ crewMember.getUser().getNickname() }}
-                            {% endif %}
+                            <a href="{{ url('/profile/show?id=' ~ crewMember.getUser().getId()) }}">
+                                {% if crewMember.getUser().getNickname() is empty %}
+                                    {{ crewMember.getUser().getEmail() }}
+                                {% else %}
+                                    {{ crewMember.getUser().getNickname() }}
+                                {% endif %}
+                            </a>
                         </td>
                         <td>{{ crewMember.getUser().getRank().getText() }}</td>
                         <td>{{ crewMember.getUser().getRankScore() }}</td>

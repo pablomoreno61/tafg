@@ -6,9 +6,6 @@ use CSP\Application\Shared\Controller\SharedController;
 
 class MedalController extends SharedController
 {
-    /**
-     * @todo
-     */
     public function showEarnedMedalsAction()
     {
         $userId = $this->request->get('userId', 'int', $this->session->user->getId());

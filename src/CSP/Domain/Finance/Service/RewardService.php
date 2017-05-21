@@ -5,8 +5,10 @@ namespace CSP\Domain\Finance\Service;
 use CSP\Domain\Finance\Entity\Reward;
 use CSP\Domain\Finance\Repository\RewardRepositoryInterface;
 use CSP\Domain\Finance\Exception\RewardAlreadyExistsException;
+use CSP\Domain\Gamification\Entity\LeaderBoard;
 use CSP\Domain\Gamification\Entity\Medal;
 use CSP\Domain\Gamification\Entity\Prize;
+use CSP\Domain\Gamification\Service\LeaderBoardServiceInterface;
 use CSP\Domain\Gamification\Service\RankServiceInterface;
 use CSP\Domain\Mission\Service\MissionService;
 use CSP\Domain\Mission\Service\MissionServiceInterface;
@@ -17,6 +19,8 @@ class RewardService
 {
     private $rewardRepository;
 
+    private $leaderBoardService;
+
     private $rankService;
 
     private $userService;
@@ -25,11 +29,14 @@ class RewardService
 
     public function __construct(
         RewardRepositoryInterface $rewardRepository,
+        LeaderBoardServiceInterface $leaderBoardService,
         RankServiceInterface $rankService,
         UserServiceInterface $userService,
         MissionServiceInterface $missionService
     ) {
         $this->rewardRepository = $rewardRepository;
+
+        $this->leaderBoardService = $leaderBoardService;
 
         $this->rankService = $rankService;
 
@@ -57,7 +64,7 @@ class RewardService
         // if is first the reward, create medal
         $numRewards = $this->countRewardsByUser($userId);
 
-        if ($this->countRewardsByUser($userId) == 0) {
+        if ($numRewards == 0) {
             $this->rankService->addEarnedMedal($user, Medal::FIRST_LEAD);
         }
 
@@ -82,6 +89,13 @@ class RewardService
 
         // Create prize allways
         $this->rankService->addEarnedPrize($user, Prize::LEAD_REWARDED);
+
+        // Update leader board player credits
+        $this->leaderBoardService->updateLeaderBoardPlayer(
+            $userId,
+            LeaderBoard::HISTORIC_BY_POINTS,
+            $reward->getCredits()
+        );
 
         return $reward;
     }

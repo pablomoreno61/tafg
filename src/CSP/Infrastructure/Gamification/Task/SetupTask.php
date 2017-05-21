@@ -2,6 +2,7 @@
 
 namespace CSP\Infrastructure\Gamification\Task;
 
+use CSP\Domain\Gamification\Entity\LeaderBoard;
 use CSP\Domain\Gamification\Entity\Medal;
 use CSP\Domain\Gamification\Entity\Prize;
 use CSP\Domain\Gamification\Entity\Rank;
@@ -93,6 +94,9 @@ class SetupTask extends PhTask
         }
     }
 
+    /**
+     * php /var/www/tfg/bin/cli.php dev gamification/setup createRanks
+     */
     public function createRanksAction()
     {
         $ranksData = array(
@@ -127,6 +131,9 @@ class SetupTask extends PhTask
         }
     }
 
+    /**
+     * php /var/www/tfg/bin/cli.php dev gamification/setup createPrizes
+     */
     public function createPrizesAction()
     {
         $prizesData = array(
@@ -155,6 +162,50 @@ class SetupTask extends PhTask
                 ->setActive(true);
 
             $this->rankService->savePrize($prize);
+        }
+    }
+
+    /**
+     * php /var/www/tfg/bin/cli.php dev gamification/setup createLeaderBoards
+     */
+    public function createLeaderBoardsAction()
+    {
+        $leaderboardsData = array(
+            array(
+                'text' => 'Classificació històrica per punts',
+                'description' => 'Classificació basada en el sumatori total de punts aconseguits per cada usuari'
+            ),
+            array(
+                'text' => 'Classificació anual per punts',
+                'description' => 'Classificació de temporada anual amb el sumatori de punts aconseguits durant l\'any en curs'
+            ),
+            array(
+                'text' => 'Classificació mensual per punts',
+                'description' => 'Classificació basada en el sumatori de punts aconseguits durant el mes en curs'
+            ),
+            array(
+                'text' => 'Classificació anual per punts directes',
+                'description' => 'Classificació de temporada anual amb el sumatori de punts directes aconseguits durant l\'any en curs'
+            ),
+            array(
+                'text' => 'Classificació mensual per punts directes',
+                'description' => 'Classificació basada en el sumatori de punts directes aconseguits durant el mes en curs'
+            )
+        );
+
+        foreach ($leaderboardsData as $leaderboardData) {
+            $leaderboard = $this->leaderBoardService->findOneLeaderBoardBy(array('text' => $leaderboardData['text']));
+
+            if (empty($leaderboard)) {
+                $leaderboard = new LeaderBoard();
+            }
+
+            $leaderboard
+                ->setText($leaderboardData['text'])
+                ->setDescription($leaderboardData['description'])
+                ->setActive(true);
+
+            $this->leaderBoardService->saveLeaderBoard($leaderboard);
         }
     }
 }

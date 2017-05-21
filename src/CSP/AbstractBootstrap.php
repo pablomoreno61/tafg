@@ -9,10 +9,13 @@ use CSP\Domain\Gamification\Entity\Crew;
 use CSP\Domain\Gamification\Entity\CrewMember;
 use CSP\Domain\Gamification\Entity\EarnedMedal;
 use CSP\Domain\Gamification\Entity\EarnedPrize;
+use CSP\Domain\Gamification\Entity\LeaderBoard;
+use CSP\Domain\Gamification\Entity\LeaderBoardPlayer;
 use CSP\Domain\Gamification\Entity\Medal;
 use CSP\Domain\Gamification\Entity\Prize;
 use CSP\Domain\Gamification\Entity\Rank;
 use CSP\Domain\Gamification\Service\CrewService;
+use CSP\Domain\Gamification\Service\LeaderBoardService;
 use CSP\Domain\Gamification\Service\RankService;
 use CSP\Domain\Mission\Entity\Mission;
 use CSP\Domain\Mission\Service\MissionService;
@@ -182,6 +185,7 @@ abstract class AbstractBootstrap
             $signupService = new SignupService(
                 $di->get('em')->getRepository(User::class),
                 $di->get('crewService'),
+                $di->get('leaderBoardService'),
                 $di->get('rankService')
             );
             return $signupService;
@@ -204,6 +208,7 @@ abstract class AbstractBootstrap
         $this->getDI()->setShared('rewardService', function() use($di) {
             $rewardService = new RewardService(
                 $di->get('em')->getRepository(Reward::class),
+                $di->get('leaderBoardService'),
                 $di->get('rankService'),
                 $di->get('userService'),
                 $di->get('missionService')
@@ -230,6 +235,15 @@ abstract class AbstractBootstrap
                 $di->get('userService')
             );
             return $crewService;
+        });
+
+        $this->getDI()->setShared('leaderBoardService', function() use($di) {
+            $leaderBoardService = new LeaderBoardService(
+                $di->get('em')->getRepository(LeaderBoard::class),
+                $di->get('em')->getRepository(LeaderBoardPlayer::class),
+                $di->get('userService')
+            );
+            return $leaderBoardService;
         });
     }
 }

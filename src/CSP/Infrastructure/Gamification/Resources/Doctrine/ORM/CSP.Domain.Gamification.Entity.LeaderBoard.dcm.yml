@@ -19,6 +19,12 @@ CSP\Domain\Gamification\Entity\LeaderBoard:
       options:
         fixed: false
       unique: true
+    description:
+      type: string
+      nullable: true
+      length: 255
+      options:
+        fixed: false
     isActive:
       type: boolean
       nullable: false
@@ -38,7 +44,7 @@ CSP\Domain\Gamification\Entity\LeaderBoard:
   oneToMany:
     leaderBoardPlayers:
       targetEntity: CSP\Domain\Gamification\Entity\LeaderBoardPlayer
-      mappedBy: leaderBoardPlayer
+      mappedBy: leaderBoard
   lifecycleCallbacks:
     prePersist: [updatedLifeCycleDates]
     preUpdate: [updatedLifeCycleDates]
