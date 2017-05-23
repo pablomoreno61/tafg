@@ -20,17 +20,6 @@ class SharedController extends PhController
         return $this;
     }
 
-    protected function setHeadTitle($headTitle)
-    {
-        if (strpos($headTitle, 'TFG Consupermiso') === false) {
-            $headTitle .= ' | TFG Consupermiso';
-        }
-
-        Tag::setDefault('headTitle', $headTitle);
-
-        return $this;
-    }
-
     protected function sendJson(bool $success, $message, array $data)
     {
         $this->view->disable();
